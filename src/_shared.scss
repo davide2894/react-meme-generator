@@ -1,0 +1,39 @@
+@use 'sass:math';
+
+//* Function: rem()
+//* DESCRIPTION: px -> rem conversion
+@function rem($px, $base: 16px) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// MIXINS
+@mixin text-small {
+  font-size: $font-size-small;
+  line-height: $lh-small;
+}
+
+@mixin text-big {
+  font-size: $font-size-big;
+  line-height: $lh-big;
+}
+
+// COLORS
+$salmon: #F55A5A;
+$white: #FFFFFF;
+$spanish-gray: #918E9B;
+$venetian-red: #CC1512;
+$description-gray: #2B283A;
+$light-gray: #e5e5e5;
+
+// FONTS
+$font-size-small: rem(11px);
+$font-size-medium: rem(16px);
+$font-size-big: rem(25px);
+
+// FONT WEIGHTS
+$font-weight-bold: 700;
+
+// LINE HEIGHTS
+$lh-small: 13px;
+$lh-big: 30px;
+
