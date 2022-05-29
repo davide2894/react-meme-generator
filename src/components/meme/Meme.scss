@@ -1,0 +1,32 @@
+@import '../../shared';
+
+.meme {
+    margin-top: 100px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px auto;
+}
+
+.form {
+    display: grid;
+    grid-template: 40px 40px / 1fr 1fr;
+    gap: 17px;
+
+    &__inputField {
+        text-indent: 5px;
+        border-radius: 5px;
+        border: 1px solid $light-silver;
+        color: #0D0D0D; 
+    }
+
+    &__button {
+        grid-column: 1 / -1;
+        @include backgroundLinear;
+        font-weight: $font-weight-bold;
+        text-align: center;
+        color: $white;
+        border-radius: 5px;
+    }
+}
