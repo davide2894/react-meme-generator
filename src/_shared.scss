@@ -17,12 +17,12 @@
   line-height: $lh-big;
 }
 
+@mixin backgroundLinear{
+  background: linear-gradient(to right, #672280,#A626D3);
+}
+
 // COLORS
-$salmon: #F55A5A;
 $white: #FFFFFF;
-$spanish-gray: #918E9B;
-$venetian-red: #CC1512;
-$description-gray: #2B283A;
 $light-gray: #e5e5e5;
 
 // FONTS
