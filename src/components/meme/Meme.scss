@@ -7,6 +7,10 @@
     flex-direction: column;
     justify-content: center;
     margin: 40px auto;
+
+    &__imageContainer {
+        max-width: 100%;
+    }
 }
 
 .form {
