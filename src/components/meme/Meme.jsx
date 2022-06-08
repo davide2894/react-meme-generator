@@ -4,28 +4,39 @@ import { useState } from "react";
 
 export default function Meme() {
     /**
-     * Challenge: Save the random meme URL in state
-     * - Create new state called `memeImage` with an
-     *   empty string as default
-     * - When the getMemeImage function is called, update
-     *   the `memeImage` state to be the random chosen
-     *   image URL
-     * - Below the div.form, add an <img /> and set the
-     *   src to the new `memeImage` state you created
+     * Challenge: Update our state to save the meme-related
+     * data as an object called `meme`. It should have the
+     * following 3 properties:
+     * topText, bottomText, randomImage.
+     * 
+     * The 2 text states can default to empty strings for now,
+     * amd randomImage should default to "http://i.imgflip.com/1bij.jpg"
+     * 
+     * Next, create a new state variable called `allMemeImages`
+     * which will default to `memesData`, which we imported above
+     * 
+     * Lastly, update the `getMemeImage` function and the markup 
+     * to reflect our newly reformed state object and array in the
+     * correct way.
      */
 
-    const [memeImageUrl, setMemeImageUrl] = useState("");
-    const memesArray = memesData.data.memes;
+    const [meme, setMeme] = useState({
+        topText: "",
+        bottomText: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg"
+    })
+
+    const [allMemeImages, _] = useState(memesData.data.memes)
     
     function getRandomMemeImageUrl() {
-        const randomNumber = Math.floor(Math.random() * memesArray.length);
-    
-        return memesArray[randomNumber].url;
+        const randomNumber = Math.floor(Math.random() * allMemeImages.length);
+        return allMemeImages[randomNumber].url;
     }
 
     function onSubmit(evt) {
-        evt.preventDefault();
-        setMemeImageUrl(getRandomMemeImageUrl());
+        evt.preventDefault(evt);
+        const randomMemeUrl = getRandomMemeImageUrl();
+        setMeme(prevMemeState => ({...prevMemeState, randomImage: randomMemeUrl}));
     }
     
     return (
@@ -43,12 +54,12 @@ export default function Meme() {
                     className="form__inputField"
                     id="memeSecondLine" 
                     name="meme second line" 
-                    placeholder="write meme second line here" 
+                    placeholder="write meme second line here"
                 />
                 <button type="submit" className="form__button">Get a new meme image  🖼</button>
             </form>
             <div className="meme_imgContainer">
-                <img className="meme__image" src={memeImageUrl} />
+                <img alt="random meme" className="meme__image" src={meme.randomImage} />
             </div>
         </div>
     )
