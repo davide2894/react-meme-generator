@@ -4,20 +4,11 @@ import { useState } from "react";
 
 export default function Meme() {
     /**
-     * Challenge: Update our state to save the meme-related
-     * data as an object called `meme`. It should have the
-     * following 3 properties:
-     * topText, bottomText, randomImage.
-     * 
-     * The 2 text states can default to empty strings for now,
-     * amd randomImage should default to "http://i.imgflip.com/1bij.jpg"
-     * 
-     * Next, create a new state variable called `allMemeImages`
-     * which will default to `memesData`, which we imported above
-     * 
-     * Lastly, update the `getMemeImage` function and the markup 
-     * to reflect our newly reformed state object and array in the
-     * correct way.
+     * Challenge: 
+     * 1. Set up the text inputs to save to
+     *    the `topText` and `bottomText` state variables.
+     * 2. Replace the hard-coded text on the image with
+     *    the text being saved to state.
      */
 
     const [meme, setMeme] = useState({
@@ -38,6 +29,21 @@ export default function Meme() {
         const randomMemeUrl = getRandomMemeImageUrl();
         setMeme(prevMemeState => ({...prevMemeState, randomImage: randomMemeUrl}));
     }
+
+    function handleChange(evt){
+        //update input value
+        //update meme text
+        //state can be just meme, that updates both parts of the page
+        
+        const {name, value} = evt.target;
+        
+        setMeme(prevMemeState => {
+            return {
+                ...prevMemeState,
+                [name]: value
+            }
+        });
+    }
     
     return (
         <div className="meme">
@@ -46,20 +52,26 @@ export default function Meme() {
                     type="text" 
                     className="form__inputField"
                     id="memeFirstLine" 
-                    name="meme first line" 
-                    placeholder="write meme first line here" 
+                    name="topText"
+                    placeholder="write meme first line here"
+                    value={meme.topText}
+                    onChange={handleChange}
                 />
                 <input 
                     type="text" 
                     className="form__inputField"
                     id="memeSecondLine" 
-                    name="meme second line" 
+                    name="bottomText" 
                     placeholder="write meme second line here"
+                    value={meme.bottomText}
+                    onChange={handleChange}
                 />
                 <button type="submit" className="form__button">Get a new meme image  🖼</button>
             </form>
-            <div className="meme_imgContainer">
+            <div className="meme__imgContainer">
                 <img alt="random meme" className="meme__image" src={meme.randomImage} />
+                <h2 className="meme__text meme__text--top">{meme.topText}</h2>
+                <h2 className="meme__text meme__text--bottom    ">{meme.bottomText}</h2>
             </div>
         </div>
     )
